@@ -1,0 +1,19 @@
+{
+  "name": "ant-lit",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "@types/less": "^3.0.3",
+    "@types/node": "^18.11.15",
+    "less": "^4.1.3",
+    "typescript": "^4.9.4",
+    "vite": "^4.0.1"
+  },
+  "dependencies": {
+    "lit": "^2.5.0"
+  }
+}
