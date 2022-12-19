@@ -3,6 +3,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property } from 'lit/decorators.js';
 import { InputBoolean } from '../decorator/convert';
 import style from '../style/button.css';
+import wave from '../wave/wave.css';
 import { NzWaveRenderer } from '../wave/nz-wave-renderer';
 import { AttrMixin } from '../mixin/attr.mixin';
 
@@ -12,7 +13,7 @@ export type NzButtonSize = 'large' | 'default' | 'small';
 
 @customElement('ant-button')
 export class ButtonElement extends AttrMixin(LitElement) {
-  static styles = [style];
+  static styles = [style, wave];
 
   @property() nzType: NzButtonType = 'default';
   @property() nzShape: NzButtonShape = null;
@@ -33,7 +34,7 @@ export class ButtonElement extends AttrMixin(LitElement) {
 
   firstUpdated(_changedProperties: PropertyValues) {
     super.firstUpdated(_changedProperties);
-    this._wave = new NzWaveRenderer(this.shadowRoot?.querySelector('.ant-btn')!, false);
+    this._wave = new NzWaveRenderer(this.shadowRoot!, this.shadowRoot?.querySelector('.ant-btn')!, false);
   }
 
   disconnectedCallback() {

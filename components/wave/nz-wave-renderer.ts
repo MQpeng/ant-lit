@@ -4,7 +4,7 @@
  */
 
 export class NzWaveRenderer {
-  private waveTransitionDuration = 44400;
+  private waveTransitionDuration = 400;
   private styleForPseudo: HTMLStyleElement | null = null;
   private extraNode: HTMLDivElement | null = null;
   private lastTime = 0;
@@ -13,9 +13,13 @@ export class NzWaveRenderer {
     return this.insertExtraNode ? 'ant-click-animating' : 'ant-click-animating-without-extra-node';
   }
 
-  constructor(private triggerElement: HTMLElement, private insertExtraNode: boolean) {
+  constructor(private shadowRoot: ShadowRoot, private triggerElement: HTMLElement, private insertExtraNode: boolean) {
     this.clickHandler = this.onClick.bind(this);
     this.bindTriggerEvent();
+  }
+
+  get styleDom() {
+    return this.shadowRoot;
   }
 
   onClick = (event: MouseEvent): void => {
@@ -45,8 +49,8 @@ export class NzWaveRenderer {
   }
 
   removeStyleAndExtraNode(): void {
-    if (this.styleForPseudo && document.body.contains(this.styleForPseudo)) {
-      document.body.removeChild(this.styleForPseudo);
+    if (this.styleForPseudo && this.styleDom.contains(this.styleForPseudo)) {
+      this.styleDom.removeChild(this.styleForPseudo);
       this.styleForPseudo = null;
     }
     if (this.insertExtraNode && this.triggerElement.contains(this.extraNode)) {
@@ -76,7 +80,7 @@ export class NzWaveRenderer {
       [ant-click-animating-without-extra-node='true']::after, .ant-click-animating-node {
         --antd-wave-shadow-color: ${waveColor};
       }`;
-      document.body.appendChild(this.styleForPseudo);
+      this.styleDom.appendChild(this.styleForPseudo);
     }
 
     if (this.insertExtraNode) {
