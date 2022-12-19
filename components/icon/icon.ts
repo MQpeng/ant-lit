@@ -8,7 +8,7 @@ import { ThemeType, ThemeTypeUpperCase } from '@ant-design/icons-svg/lib/types';
 import * as IconResource from '@ant-design/icons-svg';
 import { renderIconDefinitionToSVGElement } from '@ant-design/icons-svg/es/helpers';
 import { TitleCase } from '../common/pure.fun';
-import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
 export interface IdentifierMeta {
   name: string;
   themeSuffix?: ThemeTypeUpperCase;
@@ -101,6 +101,6 @@ export class IconElement extends AttrMixin(LitElement) {
     );
     // console.log('unsafeStatic(svgHTMLString)', unsafeStatic(svgHTMLString));
 
-    return html`<span>${unsafeHTML(svgHTMLString)}</span>`;
+    return html`<span>${unsafeSVG(svgHTMLString)}</span>`;
   }
 }
