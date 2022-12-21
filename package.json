@@ -1,8 +1,8 @@
 {
   "name": "ant-lit",
+  "description": "Lit UI Component Library based on Ant Design",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT",
   "scripts": {
     "dev": "vite"
   },
@@ -17,5 +17,17 @@
     "@ant-design/icons-svg": "^4.2.1",
     "@floating-ui/dom": "^1.0.12",
     "lit": "^2.5.0"
-  }
+  },
+  "author": "tonyer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MQpeng/ant-lit.git/issues"
+  },
+  "homepage": "https://github.com/MQpeng/ant-lit.git#readme",
+  "keywords": [
+    "lit",
+    "web components",
+    "UI Component",
+    "Typescript"
+  ]
 }
