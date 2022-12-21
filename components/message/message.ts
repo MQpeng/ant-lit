@@ -3,6 +3,7 @@ import { customElement, property, state } from 'lit/decorators.js';
 import style from '../style/message.css';
 import move from '../animation/move.css';
 import { AttrMixin } from '../mixin/attr.mixin';
+import { styleMap } from 'lit/directives/style-map.js';
 
 export type NzMessageType = 'success' | 'info' | 'warning' | 'error' | 'loading' | string;
 
@@ -87,6 +88,14 @@ export class MessageElement extends AttrMixin(LitElement) {
 
   render() {
     const type = this.instance.type;
+    const colorMap: { [key: NzMessageType]: string } = {
+      success: 'var(--ant-success-color)',
+      error: 'var(--ant-error-color)',
+      warning: 'var(--ant-warning-color)',
+      info: 'var(--ant-info-color)',
+      loading: 'var(--ant-info-color)'
+    };
+
     return html`
       <div
         class="ant-message-notice ${this.moveClassMap[this.instanceState]}"
@@ -94,7 +103,10 @@ export class MessageElement extends AttrMixin(LitElement) {
         @mouseleave="${this.onLeave}"
       >
         <div class="ant-message-notice-content">
-          <div class="ant-message-custom-content" class="${'ant-message-' + type}">
+          <div
+            class="ant-message-custom-content ${'ant-message-' + type}"
+            style=${styleMap({ '--ant-icon-color': colorMap[type] })}
+          >
             <ant-icon nzType="${MessageElement.typeToIcon[type]}"></ant-icon>
             <span .innerHTML="${this.instance.content}"></span>
           </div>

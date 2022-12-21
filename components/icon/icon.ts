@@ -3,12 +3,12 @@ import { customElement, property } from 'lit/decorators.js';
 import { InputBoolean } from '../decorator/convert';
 import style from '../style/icon.css';
 import { BooleanInput } from '../types/convert-input';
-import { ThemeType, ThemeTypeUpperCase } from '@ant-design/icons-svg/lib/types';
+import { ThemeTypeUpperCase } from '@ant-design/icons-svg/lib/types';
 import * as IconResource from '@ant-design/icons-svg';
 import { renderIconDefinitionToSVGElement } from '@ant-design/icons-svg/es/helpers';
 import { TitleCase } from '../common/pure.fun';
 import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
-import { DisShadowMixin } from '@mixin/dis.mixin';
+import { AttrMixin } from '@mixin/attr.mixin';
 export interface IdentifierMeta {
   name: string;
   themeSuffix?: ThemeTypeUpperCase;
@@ -45,7 +45,7 @@ export class IconCache {
 const _IconResource: any = IconResource;
 
 @customElement('ant-icon')
-export class IconElement extends DisShadowMixin(LitElement) {
+export class IconElement extends AttrMixin(LitElement) {
   static styles = [
     style,
     css`
@@ -105,10 +105,6 @@ export class IconElement extends DisShadowMixin(LitElement) {
     super.connectedCallback();
   }
 
-  createRenderRoot() {
-    return this;
-  }
-
   render() {
     const svgHTMLString = this.iconService.get(
       getIdentifier({ name: this.type, themeSuffix: this.theme || 'Outlined' })
@@ -116,8 +112,8 @@ export class IconElement extends DisShadowMixin(LitElement) {
     // console.log('unsafeStatic(svgHTMLString)', unsafeStatic(svgHTMLString));
 
     return html`<span
-      class="anticon"
-      style="line-height: 0;text-align: center;display: inline-block;vertical-align: -0.125em;"
+      class="anticon ${this.spin || this.type == 'loading' ? 'anticon-loading' : ''}"
+      style="line-height: 0;text-align: center;display: inline-block;vertical-align: -0.125em;color: var(--ant-icon-color)"
       >${unsafeSVG(svgHTMLString)}</span
     >`;
   }

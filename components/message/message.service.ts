@@ -102,3 +102,7 @@ export class NzMessageService extends NzMNService {
 const msgSrc = new NzMessageService();
 
 msgSrc.success('123123123');
+msgSrc.info('123123123');
+msgSrc.error('123123123');
+msgSrc.warning('123123123');
+msgSrc.loading('123123123');

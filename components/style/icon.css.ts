@@ -7,4 +7,14 @@ export default css`
     display: inline-block;
     vertical-align: -0.125em;
   }
+
+  .anticon-loading {
+    animation: loadingCircle 1s infinite linear;
+  }
+
+  @keyframes loadingCircle {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 `;
