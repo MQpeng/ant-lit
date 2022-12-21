@@ -40,6 +40,19 @@ export default defineConfig({
   //     }
   //   }
   // ],
+  resolve: {
+    alias: [
+      { find: '@cdk', replacement: '/components/cdk' },
+      { find: '@common', replacement: '/components/common' },
+      { find: '@decorator', replacement: '/components/decorator' },
+      { find: '@mixin', replacement: '/components/mixin' },
+      { find: '@service', replacement: '/components/service' },
+      { find: '@style', replacement: '/components/style' },
+      { find: '@types', replacement: '/components/types' },
+      { find: '@overlay', replacement: '/components/overlay' },
+      { find: '@animation', replacement: '/components/animation' }
+    ]
+  },
   css: {
     preprocessorOptions: {
       less: {

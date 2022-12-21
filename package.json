@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@ant-design/icons-svg": "^4.2.1",
+    "@floating-ui/dom": "^1.0.12",
     "lit": "^2.5.0"
   }
 }

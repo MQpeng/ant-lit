@@ -21,7 +21,37 @@
     "forceConsistentCasingInFileNames": true,
     "useDefineForClassFields": false,
     "skipLibCheck": true,
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+    "baseUrl": "components",
+    "paths": {
+      "@cdk/*": [
+        "cdk/*"
+      ],
+      "@common/*": [
+        "common/*"
+      ],
+      "@decorator/*": [
+        "decorator/*"
+      ],
+      "@mixin/*": [
+        "mixin/*"
+      ],
+      "@service/*": [
+        "service/*"
+      ],
+      "@style/*": [
+        "style/*"
+      ],
+      "@types/*": [
+        "types/*"
+      ],
+      "@overlay/*": [
+        "overlay/*"
+      ],
+      "@animation/*": [
+        "animation/*"
+      ],
+    }
   },
   "include": [
     "components/**/*.ts"

@@ -1,14 +1,14 @@
-import { LitElement, html } from 'lit';
+import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { InputBoolean } from '../decorator/convert';
 import style from '../style/icon.css';
-import { AttrMixin } from '../mixin/attr.mixin';
 import { BooleanInput } from '../types/convert-input';
 import { ThemeType, ThemeTypeUpperCase } from '@ant-design/icons-svg/lib/types';
 import * as IconResource from '@ant-design/icons-svg';
 import { renderIconDefinitionToSVGElement } from '@ant-design/icons-svg/es/helpers';
 import { TitleCase } from '../common/pure.fun';
 import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
+import { DisShadowMixin } from '@mixin/dis.mixin';
 export interface IdentifierMeta {
   name: string;
   themeSuffix?: ThemeTypeUpperCase;
@@ -45,8 +45,18 @@ export class IconCache {
 const _IconResource: any = IconResource;
 
 @customElement('ant-icon')
-export class IconElement extends AttrMixin(LitElement) {
-  static styles = [style];
+export class IconElement extends DisShadowMixin(LitElement) {
+  static styles = [
+    style,
+    css`
+      :host {
+        line-height: 0;
+        text-align: center;
+        vertical-align: baseline;
+        display: inline-block;
+      }
+    `
+  ];
 
   type: string;
   theme?: ThemeTypeUpperCase;
@@ -95,12 +105,16 @@ export class IconElement extends AttrMixin(LitElement) {
     super.connectedCallback();
   }
 
+  createRenderRoot() {
+    return this;
+  }
+
   render() {
     const svgHTMLString = this.iconService.get(
       getIdentifier({ name: this.type, themeSuffix: this.theme || 'Outlined' })
     );
     // console.log('unsafeStatic(svgHTMLString)', unsafeStatic(svgHTMLString));
 
-    return html`<span>${unsafeSVG(svgHTMLString)}</span>`;
+    return html`<span class="anticon">${unsafeSVG(svgHTMLString)}</span>`;
   }
 }
