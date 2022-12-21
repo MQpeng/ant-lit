@@ -21,7 +21,7 @@ const NZ_CONFIG_COMPONENT_NAME = 'message';
 
 const NZ_MESSAGE_DEFAULT_CONFIG: Required<MessageConfig> = {
   nzAnimate: true,
-  nzDuration: 300000,
+  nzDuration: 3000,
   nzMaxStack: 7,
   nzPauseOnHover: true,
   nzTop: 24,

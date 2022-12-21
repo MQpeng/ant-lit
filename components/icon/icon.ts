@@ -115,6 +115,10 @@ export class IconElement extends DisShadowMixin(LitElement) {
     );
     // console.log('unsafeStatic(svgHTMLString)', unsafeStatic(svgHTMLString));
 
-    return html`<span class="anticon">${unsafeSVG(svgHTMLString)}</span>`;
+    return html`<span
+      class="anticon"
+      style="line-height: 0;text-align: center;display: inline-block;vertical-align: -0.125em;"
+      >${unsafeSVG(svgHTMLString)}</span
+    >`;
   }
 }
